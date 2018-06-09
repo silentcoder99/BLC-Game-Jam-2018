@@ -15,13 +15,4 @@ public class ProjectileMove : MonoBehaviour
         rigBod = gameObject.GetComponent<Rigidbody2D>();
         rigBod.velocity = transform.up * speed;
     }
-
-    void Update()
-    {
-        time += Time.deltaTime;
-        if (time >= 0.1)
-        {
-            gameObject.GetComponent<Collider2D>().enabled = true;
-        }
-    }
 }

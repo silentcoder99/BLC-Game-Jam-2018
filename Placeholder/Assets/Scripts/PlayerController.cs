@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rigBod;
     public GameObject turret;
+    public float speed;
     //projectile stuff
     private float fireTimer;
     public float fireRate;
@@ -24,12 +25,15 @@ public class PlayerController : MonoBehaviour
         time += Time.deltaTime;
         if ((Input.GetButton("Fire1")) && (time > fireTimer))
         {
-            Vector3 spawnPos = turret.transform.position;
-       //     spawnPos.y += ;
+            //fires laser
             fireTimer = time + fireRate;
-            Instantiate(bolt, spawnPos, turret.transform.rotation);
+            Instantiate(bolt, turret.transform.position + turret.transform.up, turret.transform.rotation);
             fireTimer = fireTimer - time;
             time = 0.0f;
+            //moves player
+            Vector3 movement = turret.transform.up;
+            rigBod.AddForce(movement * -speed);
+            //Debug.Log(rigBod.velocity);
         }
     }
 }
