@@ -227,11 +227,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aafb0f00c281824082f017383700688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCount: 3
+  playerCount: 2
   playerPrefab: {fileID: 50249318145686768, guid: 18c5d6b839292434c8f17326fb15c51b,
     type: 2}
   scorePrefab: {fileID: 1702638643836128, guid: bcd7ee2aa65981145971080a74da4281,
     type: 2}
+  playerKeys:
+  - a
+  - f
+  - j
+  - ;
 --- !u!4 &1208000966
 Transform:
   m_ObjectHideFlags: 0

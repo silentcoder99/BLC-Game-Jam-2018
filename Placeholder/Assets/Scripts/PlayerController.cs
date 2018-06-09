@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
-        if ((Input.GetButton(key)) && (time > fireTimer))
+        if ((Input.GetKey(key)) && (time > fireTimer))
         {
             //fires laser
             fireTimer = time + fireRate;

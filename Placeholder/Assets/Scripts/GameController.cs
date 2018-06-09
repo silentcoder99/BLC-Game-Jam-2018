@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour {
     public int playerCount;
     public Rigidbody2D playerPrefab;
     public GameObject scorePrefab;
+    public string[] playerKeys;
 
     //Private vars
     //private int[] scores;
@@ -78,18 +79,17 @@ public class GameController : MonoBehaviour {
     void init()
     {
         //Instantiate scoring and players
-        float playerSpacing = (spawnXRange * 2) / (playerCount - 1);
         float scoreSpacing = (scoreXRange * 2) / (playerCount - 1);
         for (int i = 0; i < playerCount; i++)
         {
-            float playerX = (float) i * playerSpacing - spawnXRange;
             float scoreX = (float) i * scoreSpacing - scoreXRange;
-            players[i].gameObject = Instantiate(playerPrefab, new Vector3(playerX, 0, 0), transform.rotation).gameObject;
             players[i].scoreUI = Instantiate(scorePrefab, new Vector3(scoreX, scoreY, 0), transform.rotation);
             players[i].scoreUI.transform.SetParent(canvas.transform);
             players[i].scoreUI.transform.localPosition = new Vector3(scoreX, scoreY, 0);
             players[i].score = 0;
         }
+
+        respawn();
     }
 
     void respawn()
@@ -98,8 +98,13 @@ public class GameController : MonoBehaviour {
         float playerSpacing = (spawnXRange * 2) / (playerCount - 1);
         for (int i = 0; i < playerCount; i++)
         {
+            //Instantiate player
             float playerX = (float)i * playerSpacing - spawnXRange;
             players[i].gameObject = Instantiate(playerPrefab, new Vector3(playerX, 0, 0), transform.rotation).gameObject;
+
+            //Set fire key
+            PlayerController script = players[i].gameObject.GetComponent<PlayerController>();
+            script.key = playerKeys[i];
         }
     }
 }

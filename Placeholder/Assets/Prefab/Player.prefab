@@ -218,7 +218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turret: {fileID: 1856168362997886}
   speed: 100
-  key: Fire1
+  key: space
   fireRate: 0.5
   bolt: {fileID: 1338285991435180, guid: 3279d8a14096220409065548064a258f, type: 2}
 --- !u!212 &212144139147601586
