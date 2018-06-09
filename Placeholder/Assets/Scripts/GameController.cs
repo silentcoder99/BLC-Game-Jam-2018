@@ -38,9 +38,6 @@ public class GameController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-
-        Debug.Log(players[0].score + ", " + players[1].score + ", " + players[2].score + ", " + players[3].score);
-
         //Count players
         int alivePlayerCount = GameObject.FindGameObjectsWithTag("Player").Length;
 
