@@ -44,27 +44,34 @@ public class GameController : MonoBehaviour {
         //If 1 player's left, give them a point and reset
         if (alivePlayerCount == 1)
         {
-            foreach (PlayerStat player in players)
+            int winner = 0;
+
+            for (int i = 0; i < playerCount; i++)
             {
-                if (player.gameObject)
+                if (players[i].gameObject)
                 {
-                    player.score++;
-
-                    //Set score
-                    Text textComponent = player.scoreUI.GetComponent<Text>();
-                    textComponent.text = player.score.ToString();
-
-                    //Kill last player before respawn
-                    GameObject[] playerObjects = GameObject.FindGameObjectsWithTag("Player");
-
-                    foreach(GameObject playerObject in playerObjects)
-                    {
-                        Destroy(playerObject);
-                    }
-
-                    respawn();
+                    winner = i;
+                    break;
                 }
             }
+
+            players[winner].score = players[winner].score + 1;
+
+            //Set score
+            Text textComponent = players[winner].scoreUI.GetComponent<Text>();
+            textComponent.text = players[winner].score.ToString();
+
+            //Kill last player before respawn
+            GameObject[] playerObjects = GameObject.FindGameObjectsWithTag("Player");
+
+            foreach (GameObject playerObject in playerObjects)
+            {
+                Destroy(playerObject);
+            }
+
+            respawn();
+
+
         }
     }
 
