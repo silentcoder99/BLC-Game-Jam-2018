@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rigBod;
     public GameObject turret;
     public float speed;
+    public string key;
     //projectile stuff
     private float fireTimer;
     public float fireRate;
@@ -23,7 +24,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
-        if ((Input.GetButton("Fire1")) && (time > fireTimer))
+        if ((Input.GetButton(key)) && (time > fireTimer))
         {
             //fires laser
             fireTimer = time + fireRate;
