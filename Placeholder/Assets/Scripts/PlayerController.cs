@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private float fireTimer;
     public float fireRate;
     public GameObject bolt;
-    private float myTime = 0.0F;
+    private float time = 0.0f;
 
     void Start()
     {
@@ -21,13 +21,15 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        myTime += Time.deltaTime;
-        if ((Input.GetButton("Fire1")) && (myTime > fireTimer))
+        time += Time.deltaTime;
+        if ((Input.GetButton("Fire1")) && (time > fireTimer))
         {
-            fireTimer = myTime + fireRate;
-            Instantiate(bolt, turret.transform.position, turret.transform.rotation);
-            fireTimer = fireTimer - myTime;
-            myTime = 0.0f;
+            Vector3 spawnPos = turret.transform.position;
+       //     spawnPos.y += ;
+            fireTimer = time + fireRate;
+            Instantiate(bolt, spawnPos, turret.transform.rotation);
+            fireTimer = fireTimer - time;
+            time = 0.0f;
         }
     }
 }

@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class DestroyByContact : MonoBehaviour
 {
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.tag.Equals("Boundary")) {
+            Debug.Log("object collision, destroying");
             Destroy(other.gameObject);
             Destroy(gameObject);
         }
