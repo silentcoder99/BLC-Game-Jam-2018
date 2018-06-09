@@ -22,7 +22,22 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        //Count players
+        int alivePlayerCount = 0;
 
+        foreach (GameObject player in players)
+        {
+            if (player.scene.isValid())
+            {
+                alivePlayerCount++;
+            }
+        }
+
+        //If 1 player is left, give them a point
+        if (alivePlayerCount == 1)
+        {
+            
+        }
 	}
 
     void reset()
