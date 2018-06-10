@@ -166,6 +166,7 @@ MonoBehaviour:
   bolt: {fileID: 1338285991435180, guid: 3279d8a14096220409065548064a258f, type: 2}
   colliderTrigger: {fileID: 58002607346994370}
   colliderPhysics: {fileID: 58200276028190370}
+  pew: {fileID: 8300000, guid: 965ace5f2a037d645b653c404b4b5f34, type: 3}
 --- !u!212 &212173960368044580
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -23,10 +23,14 @@ public class PlayerController : MonoBehaviour
     public CircleCollider2D colliderTrigger;
     public CircleCollider2D colliderPhysics;
 
+    //Audio
+    private AudioSource audio;
+    public AudioClip pew;
+
 
     void Start()
     {
-       
+        audio = GameObject.Find("AudioController").GetComponent<AudioSource>();
         sprite = gameObject.GetComponent<SpriteRenderer>();
         rigBod = gameObject.GetComponent<Rigidbody2D>();
         fireTimer = 0.0f;
@@ -52,7 +56,7 @@ public class PlayerController : MonoBehaviour
             time = 0.0f;
 
             //Go pew
-            AudioSource audio = GetComponent<AudioSource>();
+            audio.clip = pew;
             audio.Play();
 
             //moves player
