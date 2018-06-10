@@ -4,5 +4,6 @@ using UnityEngine;
 
 public static class VarHolder {
 
-    public static int playerCount, pointsToWin;
+    public static int playerCount = 4;
+    public static int pointsToWin = 5;
 }
