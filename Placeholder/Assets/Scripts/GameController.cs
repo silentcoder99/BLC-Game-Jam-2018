@@ -22,8 +22,8 @@ public class GameController : MonoBehaviour {
     //private GameObject[] players;
     private PlayerStat[] players;
     private float spawnXRange = 5;
-    private float scoreXRange = 240;
-    private float scoreY =  140;
+    private float scoreXRange = 780;
+    private float scoreY =  420;
     private GameObject canvas;
 
 	// Use this for initialization
