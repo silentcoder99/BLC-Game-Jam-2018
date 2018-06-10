@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour {
     public int playerCount;
     public Rigidbody2D playerPrefab;
     public GameObject scorePrefab;
+    public GameObject promptPrefab;
     public string[] playerKeys;
     public Color[] colours;
     public int pointsToWin = 5;
@@ -88,7 +89,7 @@ public class GameController : MonoBehaviour {
             float scoreX = (float) i * scoreSpacing - scoreXRange;
             players[i].scoreUI = Instantiate(scorePrefab, new Vector3(scoreX, scoreY, 0), transform.rotation);
             players[i].scoreUI.GetComponent<Text>().color = colours[i];
-            players[i].scoreUI.transform.SetParent(canvas.transform);
+            players[i].scoreUI.transform.SetParent(canvas_Scores.transform);
             players[i].scoreUI.transform.localPosition = new Vector3(scoreX, scoreY, 0);
             players[i].score = 0;
         }
