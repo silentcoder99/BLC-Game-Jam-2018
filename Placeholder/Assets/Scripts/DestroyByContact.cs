@@ -5,7 +5,7 @@ using UnityEngine;
 public class DestroyByContact : MonoBehaviour
 {
     public AudioClip explosion;
-
+    public GameObject explosionParticle;
     private AudioSource audio;
 
     void OnTriggerEnter2D(Collider2D other)
@@ -18,15 +18,18 @@ public class DestroyByContact : MonoBehaviour
             //Play appropriate sound
             if (other.tag.Equals("Player"))
             {
+
                 audio.PlayOneShot(explosion);
             }
             //obstacles can only be destroyed by the boundary
             if (!other.gameObject.tag.Equals("Obstacle"))
             {
+                Instantiate(explosionParticle, other.transform.position, other.transform.rotation);
                 Destroy(other.gameObject);
             }
             if (!gameObject.tag.Equals("Obstacle"))
             {
+                Instantiate(explosionParticle, transform.position, transform.rotation);
                 Destroy(gameObject);
             }
         }
