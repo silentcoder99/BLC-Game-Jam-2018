@@ -230,6 +230,7 @@ MonoBehaviour:
   playerCount: 4
   playerPrefab: {fileID: 50718538563930646, guid: 18c5d6b839292434c8f17326fb15c51b,
     type: 2}
+  obstacle: {fileID: 1353323680196374, guid: ef354c4e443457d478afe87481a5fe5d, type: 2}
   scorePrefab: {fileID: 1702638643836128, guid: bcd7ee2aa65981145971080a74da4281,
     type: 2}
   promptPrefab: {fileID: 1731878675722858, guid: ae896ee29cd04364293f8820b4b912c5,
@@ -245,6 +246,8 @@ MonoBehaviour:
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 1, b: 0, a: 1}
   pointsToWin: 5
+  menuDelay: 1
+  spawnDelay: 5
 --- !u!4 &1208000966
 Transform:
   m_ObjectHideFlags: 0
