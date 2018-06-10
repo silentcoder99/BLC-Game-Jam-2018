@@ -15,25 +15,24 @@ public class GameController : MonoBehaviour {
     public int playerCount;
     public Rigidbody2D playerPrefab;
     public GameObject scorePrefab;
-    public GameObject promptPrefab;
     public string[] playerKeys;
     public Color[] colours;
+    public int pointsToWin = 5;
 
     //Private vars
-    //private int[] scores;
-    //private GameObject[] players;
     private PlayerStat[] players;
     private float spawnXRange = 5;
     private float scoreXRange = 780;
     private float scoreY =  420;
+    private GameObject canvas;
     private GameObject canvas_Scores;
     private GameObject canvas_Prompts;
 
-
     // Use this for initialization
     void Start () {
-        //scores = new int[playerCount];
-        //players = new GameObject[playerCount];
+        playerCount = VarHolder.playerCount;
+        pointsToWin = VarHolder.pointsToWin;
+
         players = new PlayerStat[playerCount];
         canvas_Scores = GameObject.Find("Can_Scores");
         canvas_Prompts = GameObject.Find("Can_Controls");
@@ -89,7 +88,7 @@ public class GameController : MonoBehaviour {
             float scoreX = (float) i * scoreSpacing - scoreXRange;
             players[i].scoreUI = Instantiate(scorePrefab, new Vector3(scoreX, scoreY, 0), transform.rotation);
             players[i].scoreUI.GetComponent<Text>().color = colours[i];
-            players[i].scoreUI.transform.SetParent(canvas_Scores.transform);
+            players[i].scoreUI.transform.SetParent(canvas.transform);
             players[i].scoreUI.transform.localPosition = new Vector3(scoreX, scoreY, 0);
             players[i].score = 0;
         }
@@ -115,7 +114,7 @@ public class GameController : MonoBehaviour {
             Vector3 temp = prompt.transform.localPosition;
             temp.y = -80;
             prompt.transform.localPosition = temp;
-            
+
             //Set fire key
             PlayerController script = players[i].gameObject.GetComponent<PlayerController>();
             script.key = playerKeys[i];

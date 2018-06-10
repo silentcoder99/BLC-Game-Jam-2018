@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour {
@@ -118,5 +119,13 @@ public class MenuController : MonoBehaviour {
     {
         pointsToWin = pointsToWin - 5;
         pointsText.text = pointsToWin.ToString();
+    }
+
+    public void startGame()
+    {
+        VarHolder.playerCount = playerCount;
+        VarHolder.pointsToWin = pointsToWin;
+
+        SceneManager.LoadScene("Main");
     }
 }
