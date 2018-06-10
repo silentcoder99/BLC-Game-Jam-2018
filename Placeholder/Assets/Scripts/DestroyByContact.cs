@@ -16,7 +16,7 @@ public class DestroyByContact : MonoBehaviour
             Debug.Log("object collision, destroying");
 
             //Play appropriate sound
-            if (other.tag.Equals("Player"))
+            if (!other.tag.Equals("Boundary"))
             {
 
                 audio.PlayOneShot(explosion);
