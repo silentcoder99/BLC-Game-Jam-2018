@@ -21,9 +21,15 @@ public class DestroyByContact : MonoBehaviour
                 audio.clip = explosion;
                 audio.Play();
             }
-
-            Destroy(other.gameObject);
-            Destroy(gameObject);
+            //obstacles can only be destroyed by the boundary
+            if (!other.gameObject.tag.Equals("Obstacle"))
+            {
+                Destroy(other.gameObject);
+            }
+            if (!gameObject.tag.Equals("Obstacle"))
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

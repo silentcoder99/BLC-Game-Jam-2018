@@ -15,12 +15,14 @@ public class GameController : MonoBehaviour {
     //Public vars
     public int playerCount;
     public Rigidbody2D playerPrefab;
+    public GameObject obstacle;
     public GameObject scorePrefab;
     public GameObject promptPrefab;
     public string[] playerKeys;
     public Color[] colours;
     public int pointsToWin = 5;
     public int menuDelay;
+    public float spawnDelay;
 
     //Private vars
     private PlayerStat[] players;
@@ -41,6 +43,7 @@ public class GameController : MonoBehaviour {
         players = new PlayerStat[playerCount];
         canvas_Scores = GameObject.Find("Can_Scores");
         canvas_Prompts = GameObject.Find("Can_Controls");
+        StartCoroutine(SpawnAsteroids());
         init();
     }
 
@@ -147,6 +150,29 @@ public class GameController : MonoBehaviour {
             script.key = playerKeys[i];
             script.colour = colours[i];
             script.prompt = prompt;
+        }
+    }
+
+    IEnumerator SpawnAsteroids()
+    {//Controls asteroid spawning
+        GameObject asteroid;
+        bool spawnLoop = true;
+
+        while (spawnLoop)
+        {
+            yield return new WaitForSeconds(spawnDelay);
+            Quaternion spawnRotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+            Vector3 startPos = new Vector3(0, 0, 0);
+            asteroid = Instantiate(obstacle, startPos, spawnRotation);
+            Vector3 movement = asteroid.transform.up;
+            movement.x += Random.Range(-0.2f, 0.2f);
+            movement.y += Random.Range(-0.2f, 0.2f);
+            asteroid.transform.position = movement * -10;
+            asteroid.GetComponent<ProjectileMove>().speed += Random.Range(-0.5f, 0.5f);
+            float ranScaleVal = Random.Range(-0.25f, 0.25f);
+            Vector3 ranScaleVec = new Vector3(ranScaleVal, ranScaleVal, 0);
+            asteroid.transform.localScale += ranScaleVec;
+
         }
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class ProjectileMove : MonoBehaviour
 {
     private Rigidbody2D rigBod;
-    private GameObject turret;
+
     public float speed;
 
     void Start ()
