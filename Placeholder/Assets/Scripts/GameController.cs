@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour {
     public Rigidbody2D playerPrefab;
     public GameObject scorePrefab;
     public string[] playerKeys;
+    public Color[] colours;
 
     //Private vars
     //private int[] scores;
@@ -84,6 +85,7 @@ public class GameController : MonoBehaviour {
         {
             float scoreX = (float) i * scoreSpacing - scoreXRange;
             players[i].scoreUI = Instantiate(scorePrefab, new Vector3(scoreX, scoreY, 0), transform.rotation);
+            players[i].scoreUI.GetComponent<Text>().color = colours[i];
             players[i].scoreUI.transform.SetParent(canvas.transform);
             players[i].scoreUI.transform.localPosition = new Vector3(scoreX, scoreY, 0);
             players[i].score = 0;
@@ -105,6 +107,7 @@ public class GameController : MonoBehaviour {
             //Set fire key
             PlayerController script = players[i].gameObject.GetComponent<PlayerController>();
             script.key = playerKeys[i];
+            script.colour = colours[i];
         }
     }
 }

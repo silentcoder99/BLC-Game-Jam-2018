@@ -9,16 +9,26 @@ public class PlayerController : MonoBehaviour
     public GameObject turret;
     public float speed;
     public string key;
+    private bool init;
+    //colour stuff
+    private SpriteRenderer sprite;
+    public Color colour;
     //projectile stuff
     private float fireTimer;
     public float fireRate;
     public GameObject bolt;
     private float time = 0.0f;
+    //colliders
+    public CircleCollider2D colliderTrigger;
+    public CircleCollider2D colliderPhysics;
+
 
     void Start()
     {
+        sprite = gameObject.GetComponent<SpriteRenderer>();
         rigBod = gameObject.GetComponent<Rigidbody2D>();
         fireTimer = 0.0f;
+        init = false;
     }
 
     void Update()
@@ -26,6 +36,12 @@ public class PlayerController : MonoBehaviour
         time += Time.deltaTime;
         if ((Input.GetKey(key)) && (time > fireTimer))
         {
+            if (!init) {
+                colliderPhysics.enabled = true;
+                colliderTrigger.enabled = true;
+                sprite.color = colour;
+                init = false;
+            }
             //fires laser
             fireTimer = time + fireRate;
             Instantiate(bolt, turret.transform.position + turret.transform.up, turret.transform.rotation);
