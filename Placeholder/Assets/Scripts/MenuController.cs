@@ -87,6 +87,9 @@ public class MenuController : MonoBehaviour {
 
     public void exit()
     {
+        //for the editor
+        UnityEditor.EditorApplication.isPlaying = false;
+        //for finished game
         Application.Quit();
     }
 
