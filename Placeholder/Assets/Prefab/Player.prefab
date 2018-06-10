@@ -158,10 +158,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turret: {fileID: 1426379545347854}
-  speed: 100
+  prompt: {fileID: 0}
+  speed: 200
   key: space
   colour: {r: 1, g: 1, b: 1, a: 1}
-  fireRate: 0.5
+  fireRate: 0.4
   bolt: {fileID: 1338285991435180, guid: 3279d8a14096220409065548064a258f, type: 2}
   colliderTrigger: {fileID: 58002607346994370}
   colliderPhysics: {fileID: 58200276028190370}
