@@ -50,6 +50,11 @@ public class PlayerController : MonoBehaviour
             Instantiate(bolt, turret.transform.position + turret.transform.up, turret.transform.rotation);
             fireTimer = fireTimer - time;
             time = 0.0f;
+
+            //Go pew
+            AudioSource audio = GetComponent<AudioSource>();
+            audio.Play();
+
             //moves player
             Vector3 movement = turret.transform.up;
             rigBod.AddForce(movement * -speed);
