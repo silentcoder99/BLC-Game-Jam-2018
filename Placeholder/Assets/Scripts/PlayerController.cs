@@ -56,8 +56,7 @@ public class PlayerController : MonoBehaviour
             time = 0.0f;
 
             //Go pew
-            audio.clip = pew;
-            audio.Play();
+            audio.PlayOneShot(pew);
 
             //moves player
             Vector3 movement = turret.transform.up;
