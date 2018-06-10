@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 struct PlayerStat
@@ -19,6 +20,7 @@ public class GameController : MonoBehaviour {
     public string[] playerKeys;
     public Color[] colours;
     public int pointsToWin = 5;
+    public int menuDelay;
 
     //Private vars
     private PlayerStat[] players;
@@ -28,6 +30,8 @@ public class GameController : MonoBehaviour {
     private GameObject canvas;
     private GameObject canvas_Scores;
     private GameObject canvas_Prompts;
+    private bool backToMenu = false;
+    private int menuTimer = 0;
 
     // Use this for initialization
     void Start () {
@@ -43,40 +47,62 @@ public class GameController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        //Count players
-        int alivePlayerCount = GameObject.FindGameObjectsWithTag("Player").Length;
-
-        //If 1 player's left, give them a point and reset
-        if (alivePlayerCount == 1)
+        //Menu return to menu after a delay
+        if (backToMenu)
         {
-            int winner = 0;
+            menuTimer++;
+            Debug.Log(menuTimer);
 
-            for (int i = 0; i < playerCount; i++)
+            if(menuTimer > menuDelay)
             {
-                if (players[i].gameObject)
+                SceneManager.LoadScene("Menu");
+            }
+        }
+        else
+        {
+            //Count players
+            int alivePlayerCount = GameObject.FindGameObjectsWithTag("Player").Length;
+
+            //If 1 player's left, give them a point and reset
+            if (alivePlayerCount == 1)
+            {
+                int winner = 0;
+
+                for (int i = 0; i < playerCount; i++)
                 {
-                    winner = i;
-                    break;
+                    if (players[i].gameObject)
+                    {
+                        winner = i;
+                        break;
+                    }
+                }
+
+                players[winner].score = players[winner].score + 1;
+
+                //Set score
+                Text textComponent = players[winner].scoreUI.GetComponent<Text>();
+                textComponent.text = players[winner].score.ToString();
+
+                //Check if player has winning score
+                if (players[winner].score >= pointsToWin)
+                {
+                    //Show winning message
+
+                    backToMenu = true;
+                }
+                else
+                {
+                    //Kill last player before respawn
+                    GameObject[] playerObjects = GameObject.FindGameObjectsWithTag("Player");
+
+                    foreach (GameObject playerObject in playerObjects)
+                    {
+                        Destroy(playerObject);
+                    }
+
+                    respawn();
                 }
             }
-
-            players[winner].score = players[winner].score + 1;
-
-            //Set score
-            Text textComponent = players[winner].scoreUI.GetComponent<Text>();
-            textComponent.text = players[winner].score.ToString();
-
-            //Kill last player before respawn
-            GameObject[] playerObjects = GameObject.FindGameObjectsWithTag("Player");
-
-            foreach (GameObject playerObject in playerObjects)
-            {
-                Destroy(playerObject);
-            }
-
-            respawn();
-
-
         }
     }
 
