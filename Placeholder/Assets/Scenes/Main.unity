@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCount: 4
-  playerPrefab: {fileID: 50249318145686768, guid: 18c5d6b839292434c8f17326fb15c51b,
+  playerPrefab: {fileID: 50773850000465280, guid: 18c5d6b839292434c8f17326fb15c51b,
     type: 2}
   scorePrefab: {fileID: 1702638643836128, guid: bcd7ee2aa65981145971080a74da4281,
     type: 2}
@@ -237,6 +237,11 @@ MonoBehaviour:
   - f
   - j
   - ;
+  colours:
+  - {r: 0, g: 0, b: 1, a: 1}
+  - {r: 0.9960785, g: 0, b: 0, a: 1}
+  - {r: 0, g: 1, b: 0, a: 1}
+  - {r: 1, g: 1, b: 0, a: 1}
 --- !u!4 &1208000966
 Transform:
   m_ObjectHideFlags: 0
