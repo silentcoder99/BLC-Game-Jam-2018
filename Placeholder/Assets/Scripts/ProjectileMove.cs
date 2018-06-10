@@ -7,8 +7,6 @@ public class ProjectileMove : MonoBehaviour
     private Rigidbody2D rigBod;
     private GameObject turret;
     public float speed;
-    private float time = 0.0f;
-    private Vector2 one = new Vector2(1, 1);
 
     void Start ()
     {

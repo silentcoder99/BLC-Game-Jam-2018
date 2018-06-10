@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rigBod;
     public GameObject turret;
+    public GameObject prompt;
     public float speed;
     public string key;
     private bool init;
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+       
         sprite = gameObject.GetComponent<SpriteRenderer>();
         rigBod = gameObject.GetComponent<Rigidbody2D>();
         fireTimer = 0.0f;
@@ -40,6 +42,7 @@ public class PlayerController : MonoBehaviour
                 colliderPhysics.enabled = true;
                 colliderTrigger.enabled = true;
                 sprite.color = colour;
+                Destroy(prompt);
                 init = false;
             }
             //fires laser
