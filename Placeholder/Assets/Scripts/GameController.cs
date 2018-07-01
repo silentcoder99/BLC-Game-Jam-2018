@@ -1,10 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-struct PlayerStat
+public struct PlayerStat
 {
     public GameObject gameObject;
     public int score;
@@ -21,7 +20,8 @@ public class GameController : MonoBehaviour {
     public string[] playerKeys;
     public Color[] colours;
     public int pointsToWin = 5;
-    public int menuDelay;
+    public float secondsBackToMenu;
+    public float restartDelay;
     public float spawnDelay;
 
     //Private vars
@@ -33,14 +33,13 @@ public class GameController : MonoBehaviour {
     private GameObject canvas_Scores;
     private GameObject canvas_Prompts;
     private bool backToMenu = false;
-    private int menuTimer = 0;
 
     // Use this for initialization
     void Start () {
         playerCount = VarHolder.playerCount;
         pointsToWin = VarHolder.pointsToWin;
-
         players = new PlayerStat[playerCount];
+        
         canvas_Scores = GameObject.Find("Can_Scores");
         canvas_Prompts = GameObject.Find("Can_Controls");
         StartCoroutine(SpawnAsteroids());
@@ -50,18 +49,7 @@ public class GameController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        //Menu return to menu after a delay
-        if (backToMenu)
-        {
-            menuTimer++;
-            Debug.Log(menuTimer);
-
-            if(menuTimer > menuDelay)
-            {
-                SceneManager.LoadScene("Menu");
-            }
-        }
-        else
+        if (!backToMenu)
         {
             //Count players
             int alivePlayerCount = GameObject.FindGameObjectsWithTag("Player").Length;
@@ -80,30 +68,25 @@ public class GameController : MonoBehaviour {
                     }
                 }
 
-                players[winner].score = players[winner].score + 1;
+                VarHolder.scores[winner] += 1;
 
                 //Set score
                 Text textComponent = players[winner].scoreUI.GetComponent<Text>();
-                textComponent.text = players[winner].score.ToString();
+                textComponent.text = VarHolder.scores[winner].ToString();
 
                 //Check if player has winning score
-                if (players[winner].score >= pointsToWin)
+                if (VarHolder.scores[winner] >= pointsToWin)
                 {
                     //Show winning message
 
+                    Invoke("returnToMenu", secondsBackToMenu);
                     backToMenu = true;
                 }
                 else
                 {
-                    //Kill last player before respawn
-                    GameObject[] playerObjects = GameObject.FindGameObjectsWithTag("Player");
-
-                    foreach (GameObject playerObject in playerObjects)
-                    {
-                        Destroy(playerObject);
-                    }
-
-                    respawn();
+                    //Reload the scene
+                    Invoke("restartScene", restartDelay);
+                    backToMenu = true;
                 }
             }
         }
@@ -112,6 +95,14 @@ public class GameController : MonoBehaviour {
     void init()
     {
         //Instantiate scoring and players
+
+        if(VarHolder.scores == null)
+        {
+            VarHolder.initScores();
+        }
+
+        int[] scores = VarHolder.scores;
+
         float scoreSpacing = (scoreXRange * 2) / (playerCount - 1);
         for (int i = 0; i < playerCount; i++)
         {
@@ -120,13 +111,25 @@ public class GameController : MonoBehaviour {
             players[i].scoreUI.GetComponent<Text>().color = colours[i];
             players[i].scoreUI.transform.SetParent(canvas_Scores.transform);
             players[i].scoreUI.transform.localPosition = new Vector3(scoreX, scoreY, 0);
-            players[i].score = 0;
+            players[i].scoreUI.GetComponent<Text>().text = scores[i].ToString();
+
+            players[i].score = scores[i];
         }
 
-        respawn();
+        spawnPlayers();
     }
 
-    void respawn()
+    void returnToMenu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
+
+    void restartScene()
+    {
+        SceneManager.LoadScene("Main");
+    }
+
+    void spawnPlayers()
     {
         //Reset players
         float playerSpacing = (spawnXRange * 2) / (playerCount - 1);

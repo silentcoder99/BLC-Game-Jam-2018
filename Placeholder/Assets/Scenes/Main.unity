@@ -363,7 +363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aafb0f00c281824082f017383700688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCount: 4
+  playerCount: 2
   playerPrefab: {fileID: 50718538563930646, guid: 18c5d6b839292434c8f17326fb15c51b,
     type: 2}
   obstacle: {fileID: 1353323680196374, guid: ef354c4e443457d478afe87481a5fe5d, type: 2}
@@ -382,7 +382,8 @@ MonoBehaviour:
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 1, b: 0, a: 1}
   pointsToWin: 5
-  menuDelay: 200
+  secondsBackToMenu: 5
+  restartDelay: 1
   spawnDelay: 10
 --- !u!4 &1208000966
 Transform:
@@ -727,6 +728,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1556147995}
   - component: {fileID: 1556147994}
+  - component: {fileID: 1556147996}
   m_Layer: 0
   m_Name: AudioController
   m_TagString: Untagged
@@ -842,6 +844,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1556147996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1556147993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 310e2fe0333da664a929cf2077aa9056, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1704233722
 GameObject:
   m_ObjectHideFlags: 0
