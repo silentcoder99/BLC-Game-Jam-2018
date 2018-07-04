@@ -23,6 +23,7 @@ public class GameController : MonoBehaviour {
     public float secondsBackToMenu;
     public float restartDelay;
     public float spawnDelay;
+    public GameObject winnerText;
 
     //Private vars
     private PlayerStat[] players;
@@ -44,6 +45,8 @@ public class GameController : MonoBehaviour {
         canvas_Prompts = GameObject.Find("Can_Controls");
         StartCoroutine(SpawnAsteroids());
         init();
+
+        winnerText.SetActive(false);
     }
 
     // Update is called once per frame
@@ -78,6 +81,8 @@ public class GameController : MonoBehaviour {
                 if (VarHolder.scores[winner] >= pointsToWin)
                 {
                     //Show winning message
+                    winnerText.GetComponent<Text>().color = players[winner].scoreUI.GetComponent<Text>().color;
+                    winnerText.SetActive(true);
 
                     Invoke("returnToMenu", secondsBackToMenu);
                     backToMenu = true;
