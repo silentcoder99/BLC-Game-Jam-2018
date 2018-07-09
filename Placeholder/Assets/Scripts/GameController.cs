@@ -82,6 +82,7 @@ public class GameController : MonoBehaviour {
                 {
                     //Show winning message
                     winnerText.GetComponent<Text>().color = players[winner].scoreUI.GetComponent<Text>().color;
+                    GameObject.FindWithTag("Crown").GetComponent<SpriteRenderer>().enabled = true;
                     winnerText.SetActive(true);
 
                     Invoke("returnToMenu", secondsBackToMenu);

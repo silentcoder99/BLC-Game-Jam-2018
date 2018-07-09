@@ -438,7 +438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCount: 2
-  playerPrefab: {fileID: 50718538563930646, guid: 18c5d6b839292434c8f17326fb15c51b,
+  playerPrefab: {fileID: 50371941376772124, guid: 18c5d6b839292434c8f17326fb15c51b,
     type: 2}
   obstacle: {fileID: 1353323680196374, guid: ef354c4e443457d478afe87481a5fe5d, type: 2}
   scorePrefab: {fileID: 1702638643836128, guid: bcd7ee2aa65981145971080a74da4281,
