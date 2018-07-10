@@ -88,8 +88,6 @@ public class MenuController : MonoBehaviour {
 
     public void exit()
     {
-        //for the editor
-        //for finished game
         Application.Quit();
     }
 
@@ -127,7 +125,7 @@ public class MenuController : MonoBehaviour {
     {
         VarHolder.playerCount = playerCount;
         VarHolder.pointsToWin = pointsToWin;
-
+        VarHolder.reset = true;
         SceneManager.LoadScene("Main");
     }
 }

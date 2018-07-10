@@ -8,8 +8,8 @@ public static class VarHolder {
     public static int pointsToWin = 5;
 
     public static int[] scores;
-
-    public static void initScores()
+    public static bool reset;
+    public static void initScore()
     {
         scores = new int[playerCount];
 

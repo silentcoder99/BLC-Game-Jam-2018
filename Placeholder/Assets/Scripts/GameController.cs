@@ -39,6 +39,9 @@ public class GameController : MonoBehaviour {
     void Start () {
         playerCount = VarHolder.playerCount;
         pointsToWin = VarHolder.pointsToWin;
+        if (VarHolder.reset) {
+            VarHolder.initScore();
+        }
         players = new PlayerStat[playerCount];
         
         canvas_Scores = GameObject.Find("Can_Scores");
@@ -91,6 +94,7 @@ public class GameController : MonoBehaviour {
                 else
                 {
                     //Reload the scene
+                    VarHolder.reset = false;
                     Invoke("restartScene", restartDelay);
                     backToMenu = true;
                 }
@@ -104,7 +108,7 @@ public class GameController : MonoBehaviour {
 
         if(VarHolder.scores == null)
         {
-            VarHolder.initScores();
+            VarHolder.initScore();
         }
 
         int[] scores = VarHolder.scores;
